@@ -40,9 +40,10 @@ __toggl_current() {
 			echo "No Current Task Running";
 		else
 			echo $last_task > ~/.toggl/current_task;
-			echo $last_task;
+			echo $last_task | jshon;
 		fi
 	 fi
+	 
 }
 
 __toggl_interrupt() {

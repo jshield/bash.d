@@ -7,7 +7,7 @@ alias checkin='git tf checkin --deep'
 alias db='git branch -d'
 alias cub='git rev-parse --abbrev-ref HEAD'
 #git functions
-up() { gmaster; git tf pull; }
+up() { cmaster; git tf pull; }
 
 #tfs functions
 TFS_COLLECTION='tccperaapp1\2CC'

@@ -12,13 +12,16 @@ EDITOR='vim'
 TRANSHOST='xerxen.psm.local'
 
 # ----------------------------------------------------------------------
-# 
+# CONTEXT SETUP
 # ----------------------------------------------------------------------
 
+DOMAINNAME=$(cat /etc/resolv.conf | grep domain | awk '{ print $2 }');
+if [ -z $DOMAINNAME ]; then DOMAINNAME=`hostname -d`; fi
 
-case `hostname -d` in
-'2cc.local') CONTEXT='2CC'; _ROOT_COLOR=33; _USER_COLOR=36; ;;
-'psm.local') CONTEXT='HOME'; _ROOT_COLOR=31; _USER_COLOR=32; ;;
+case $DOMAINNAME in
+	'2cc.local') CONTEXT='2CC'; _ROOT_COLOR=33; _USER_COLOR=36; ;;
+	'psm.local') CONTEXT='HOME'; _ROOT_COLOR=31; _USER_COLOR=34; ;;
+	*) CONTEXT='NONE'; _ROOT_COLOR=30; _USER_COLOR=35; ;;
 esac
 
 if [ "`id -u`" -eq 0 ]; then _COLOR=$_ROOT_COLOR; else _COLOR=$_USER_COLOR; fi
