@@ -1,0 +1,20 @@
+function eba() {
+$EDITOR ~/.bash.d/aliases/$1
+}
+
+function ebf() {
+$EDITOR ~/.bash.d/functions/$1
+}
+
+alias ebp="$EDITOR ~/.bash.d/.bash_main"
+alias relsh="source ~/.bashrc"
+
+#generic functions
+palias () { 
+alias "$1"="$2"; 
+if [[ -v $3 ]]; 
+	then echo "alias $1='$2'" >> ~/.bash.d/aliases/$3;
+	else echo "alias $1='$2'" >> ~/.bash.d/aliases/misc;
+fi
+}
+
