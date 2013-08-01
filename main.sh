@@ -15,13 +15,17 @@ TRANSHOST='xerxen.psm.local'
 # CONTEXT SETUP
 # ----------------------------------------------------------------------
 
+if [ $OSTYPE == 'linux-gnu' ]; then
 DOMAINNAME=$(cat /etc/resolv.conf | grep domain | awk '{ print $2 }');
 if [ -z $DOMAINNAME ]; then DOMAINNAME=`hostname -d`; fi
+else
+if [ -n $USERDNSDOMAIN ]; then DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
+fi
 
 case $DOMAINNAME in
-	'2cc.local') CONTEXT='2CC'; _ROOT_COLOR=33; _USER_COLOR=36; ;;
-	'psm.local') CONTEXT='HOME'; _ROOT_COLOR=31; _USER_COLOR=34; ;;
-	*) CONTEXT='NONE'; _ROOT_COLOR=30; _USER_COLOR=35; ;;
+  '2cc.local') CONTEXT='2CC'; _ROOT_COLOR=33; _USER_COLOR=36; ;;
+  'psm.local') CONTEXT='HOME'; _ROOT_COLOR=31; _USER_COLOR=34; ;;
+  *) CONTEXT='NONE'; _ROOT_COLOR=30; _USER_COLOR=35; ;;
 esac
 
 if [ "`id -u`" -eq 0 ]; then _COLOR=$_ROOT_COLOR; else _COLOR=$_USER_COLOR; fi
