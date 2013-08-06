@@ -15,27 +15,26 @@ TRANSHOST='xerxen.psm.local'
 # CONTEXT SETUP
 # ----------------------------------------------------------------------
 
-if [ $OSTYPE == 'linux-gnu' ]; then
-DOMAINNAME=$(cat /etc/resolv.conf | grep domain | awk '{ print $2 }');
-if [ -z $DOMAINNAME ]; then DOMAINNAME=`hostname -d`; fi
-else
-if [ -n $USERDNSDOMAIN ]; then DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
-fi
+if [ -f "/etc/resolv.conf" ]; then
+DOMAINNAME=$(cat /etc/resolv.conf | grep domain | awk '{ print $2 }'); 
+else DOMAINNAME=`hostname -d`; fi
+if [ -n $USERDNSDOMAIN ] && [ -z $DOMAINNAME ]; then 
+DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
 
 case $DOMAINNAME in
-  '2cc.local') CONTEXT='2CC'; _ROOT_COLOR=33; _USER_COLOR=36; ;;
-  'psm.local') CONTEXT='HOME'; _ROOT_COLOR=31; _USER_COLOR=34; ;;
-  *) CONTEXT='NONE'; _ROOT_COLOR=30; _USER_COLOR=35; ;;
+  '2cc.local') CONTEXT='2cc'; ROOT_COLOR=33; USER_COLOR=36; ;;
+  'psm.local') CONTEXT='home'; ROOT_COLOR=31; USER_COLOR=34; ;;
+  *) CONTEXT='unknown'; ROOT_COLOR=31; USER_COLOR=32; ;;
 esac
 
-if [ "`id -u`" -eq 0 ]; then _COLOR=$_ROOT_COLOR; else _COLOR=$_USER_COLOR; fi
+if [ "`id -u`" -eq 0 ]; then _COLOR=$ROOT_COLOR; else _COLOR=$USER_COLOR; fi
+_COLOR="\e[1;${_COLOR}m\]"
 
 # ----------------------------------------------------------------------
 # PROMPT
 # ----------------------------------------------------------------------
 
-[ $TERM == linux ] && PS1="\033[0;32m\]\u \[\033[0;${_COLOR}m\]\w\033[0;0m\] >"
-[ $TERM != "linux" ] && PS1="\[\e]2;\u@\H \w\a\e[$_COLOR;1m\]>\[\e[0m\] "
+PS1="\u on \H at ${CONTEXT} in \w\r\n# "
 
 # ----------------------------------------------------------------------
 # MISCELLANEOUS

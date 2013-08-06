@@ -1,7 +1,7 @@
 # Various aliases.
 #
 alias c='clear'                  # Clear the screen.
-alias q='exit'                   # Exit the current session.
+alias x='exit'                   # Exit the current session.
 alias f='find | grep'            # Quick search.
 alias h='history'                # View the history.
 alias hist='history | grep $1'   # Search the history.
@@ -12,3 +12,5 @@ alias scrd='screen -RD'          # Reattach to a screen session, or start a new 
 alias sv='sudo vim'              # Start 'vim' with super user rights.
 alias sn='sudo nano'             # Start 'nano' with super user rights.
 alias mp='mplayer'               # Run 'mplayer'.
+alias context='echo $CONTEXT';
+alias r='fc -s'

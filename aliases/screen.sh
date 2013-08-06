@@ -1,0 +1,1 @@
+alias sct='screen -t'
