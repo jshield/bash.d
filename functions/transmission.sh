@@ -3,7 +3,9 @@ function tc() { transmission-remote $TRANSHOST "$@"
 }
 
 function tl() { tc -l 
-}__addtorrent () 
+}
+
+__addtorrent () 
 { 
     if test -z $1; then
         return 1;
