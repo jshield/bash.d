@@ -23,7 +23,7 @@ DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
 
 case $DOMAINNAME in
   '2cc.local') CONTEXT='2cc'; ROOT_COLOR=33; USER_COLOR=36; ;;
-  'psm.local') CONTEXT='home'; ROOT_COLOR=31; USER_COLOR=34; ;;
+  'psm.local') CONTEXT='home'; http_proxy='http://192.168.0.11:3128/'; ROOT_COLOR=31; USER_COLOR=34; ;;
   *) CONTEXT='unknown'; ROOT_COLOR=31; USER_COLOR=32; ;;
 esac
 

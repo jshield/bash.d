@@ -14,3 +14,4 @@ alias sn='sudo nano'             # Start 'nano' with super user rights.
 alias mp='mplayer'               # Run 'mplayer'.
 alias context='echo $CONTEXT';
 alias r='fc -s'
+alias pS='ps au'
