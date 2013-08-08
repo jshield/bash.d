@@ -22,10 +22,12 @@ if [ -n $USERDNSDOMAIN ] && [ -z $DOMAINNAME ]; then
 DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
 
 case $DOMAINNAME in
-  '2cc.local') CONTEXT='2cc'; ROOT_COLOR=33; USER_COLOR=36; ;;
-  'psm.local') CONTEXT='home'; http_proxy='http://192.168.0.11:3128/'; ROOT_COLOR=31; USER_COLOR=34; ;;
-  *) CONTEXT='unknown'; ROOT_COLOR=31; USER_COLOR=32; ;;
+  '2cc.local') CONTEXT='2cc'; ;; 
+  'psm.local') CONTEXT='home'; ;; 
+  *) CONTEXT='unknown'; ;;
 esac
+
+if test -f "~/.bash.d/contexts/${CONTEXT}.sh"; then source "~/.bash.d/contexts/${CONTEXT}.sh"; fi
 
 if [ "`id -u`" -eq 0 ]; then _COLOR=$ROOT_COLOR; else _COLOR=$USER_COLOR; fi
 _COLOR="\e[1;${_COLOR}m\]"
