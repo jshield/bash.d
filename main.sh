@@ -27,7 +27,7 @@ case $DOMAINNAME in
   *) CONTEXT='unknown'; ;;
 esac
 
-if test -f "~/.bash.d/contexts/${CONTEXT}.sh"; then source "~/.bash.d/contexts/${CONTEXT}.sh"; fi
+if [ -f ~/.bash.d/contexts/$CONTEXT.sh ]; then source ~/.bash.d/contexts/$CONTEXT.sh; fi
 
 if [ "`id -u`" -eq 0 ]; then _COLOR=$ROOT_COLOR; else _COLOR=$USER_COLOR; fi
 _COLOR="\e[1;${_COLOR}m\]"
