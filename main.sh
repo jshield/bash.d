@@ -23,11 +23,9 @@ DOMAINNAME=$(echo $USERDNSDOMAIN | tr '[A-Z]' '[a-z]'); fi
 
 case $DOMAINNAME in
   '2cc.local') CONTEXT='2cc'; ;; 
-  'psm.local') CONTEXT='home'; ;; 
+  'psm.lan') CONTEXT='home'; ;; 
   *) CONTEXT='unknown'; ;;
 esac
-
-if [ -f ~/.bash.d/contexts/$CONTEXT.sh ]; then source ~/.bash.d/contexts/$CONTEXT.sh; fi
 
 if [ "`id -u`" -eq 0 ]; then _COLOR=$ROOT_COLOR; else _COLOR=$USER_COLOR; fi
 _COLOR="\e[1;${_COLOR}m\]"
@@ -74,4 +72,8 @@ complete -cf sudo
 if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
+
+if [ -f ~/.bash.d/contexts/$CONTEXT.sh ]; then source ~/.bash.d/contexts/$CONTEXT.sh; fi
+
+if [ -f ~/.bash.d/hosts/$HOSTNAME.sh ]; then source ~/.bash.d/hosts/$HOSTNAME.sh; fi
 
