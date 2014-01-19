@@ -1,6 +1,6 @@
 jot () 
 { 
-    echo `date -Iseconds` "|$1| ${*:2}" >>~/.jotfile
+    echo `date +%s` "|$1| ${*:2}" >>~/.jotfile
 }
 pjot () 
 { 
