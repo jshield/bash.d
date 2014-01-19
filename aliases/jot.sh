@@ -1,0 +1,1 @@
+alias caplog='jot personal'
