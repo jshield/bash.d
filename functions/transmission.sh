@@ -1,5 +1,5 @@
 if [ $CONTEXT != "home" ]; then return 0; fi
-function tc() { transmission-remote $TRANSHOST "$@"
+function tc() { transmission-remote $TRANSHOST -n "$TRANSUSER:$TRANSPASSWD" "$@"
 }
 
 function tl() { tc -l 

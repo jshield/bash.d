@@ -9,7 +9,6 @@
 
 PATH=$PATH:/opt/git-tf/
 EDITOR='vim'
-TRANSHOST='xerxen.psm.local'
 
 # ----------------------------------------------------------------------
 # CONTEXT SETUP
@@ -74,6 +73,6 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 if [ -f ~/.bash.d/contexts/$CONTEXT.sh ]; then source ~/.bash.d/contexts/$CONTEXT.sh; fi
-
 if [ -f ~/.bash.d/hosts/$HOSTNAME.sh ]; then source ~/.bash.d/hosts/$HOSTNAME.sh; fi
+if [ -f ~/.bash.d/secrets.sh ]; then source ~/.bash.d/secrets.sh; fi
 
