@@ -42,7 +42,7 @@ PS1="\u on \H at ${CONTEXT} in \w\r\n# "
 # If exists, add ~/bin to $PATH.
 #
 if [ -d ~/bin ] ; then
-   PATH=~/bin:$PATH
+   PATH=~/.gem/ruby/2.1.0/bin:~/bin:$PATH
 fi
 
 # ----------------------------------------------------------------------
@@ -53,6 +53,7 @@ if [ -d ~/.bash.d/functions ] ; then
    for f in ~/.bash.d/functions/*; do
     source $f
    done
+   unset f
 fi
 
 # ----------------------------------------------------------------------
@@ -63,6 +64,7 @@ if [ -d ~/.bash.d/aliases ] ; then
    for a in ~/.bash.d/aliases/*; do
     source $a
    done
+   unset a
 fi
 
 # For bash sudo completion.
@@ -75,4 +77,3 @@ fi
 if [ -f ~/.bash.d/contexts/$CONTEXT.sh ]; then source ~/.bash.d/contexts/$CONTEXT.sh; fi
 if [ -f ~/.bash.d/hosts/$HOSTNAME.sh ]; then source ~/.bash.d/hosts/$HOSTNAME.sh; fi
 if [ -f ~/.bash.d/secrets.sh ]; then source ~/.bash.d/secrets.sh; fi
-
